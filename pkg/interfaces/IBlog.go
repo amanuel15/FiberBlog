@@ -13,3 +13,11 @@ type IReference struct {
 	Link        string `json:"link" validate:"required,url"`
 	BlogID      uint   `json:"blog_id,omitempty"`
 }
+
+type IUpdateBlog struct {
+	Title      string       `json:"title,omitempty" validate:"omitempty,min=1,max=100"`
+	Body       string       `json:"body,omitempty" validate:"omitempty,min=10"`
+	Category   string       `json:"category,omitempty" validate:"omitempty"`
+	Tags       []string     `json:"tags,omitempty"`
+	References []IReference `json:"references,omitempty" validate:"omitempty,dive"`
+}

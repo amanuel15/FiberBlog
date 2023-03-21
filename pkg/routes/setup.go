@@ -11,6 +11,7 @@ func SetupRoutes(app *fiber.App) {
 	v1 := api.Group("/v1")
 	user := v1.Group("/user", utils.VerifyToken)
 	blog := v1.Group("/blog", utils.VerifyToken)
+	comment := v1.Group("/comment", utils.VerifyToken)
 	auth := v1.Group("/auth")
 
 	user.Post("", createUser)
@@ -22,6 +23,9 @@ func SetupRoutes(app *fiber.App) {
 
 	blog.Post("", createBlog)
 	blog.Get("", getBlogs)
+	blog.Put("/:id", updateBlog)
+
+	comment.Post("", createComment)
 }
 
 func prepareResponse(value interface{}) interface{} {
